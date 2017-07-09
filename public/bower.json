@@ -1,0 +1,26 @@
+{
+  "name": "CuembyTest",
+  "homepage": "",
+  "authors": [
+    "Monik182"
+  ],
+  "description": "Cuemby Test",
+  "main": "",
+  "keywords": [
+    "Test"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular-animate": "^1.6.1",
+    "angular-bootstrap": "^2.5.0",
+    "angular-sanitize": "^1.6.1",
+    "angular-ui-router": "^0.4.2",
+    "jquery": "2.2.4",
+    "font-awesome": "^4.7.0",
+    "bootstrap": "^3.3.7"
+  }
+}

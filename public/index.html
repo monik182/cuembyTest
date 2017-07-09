@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="app">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cuemby Test</title>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!--STYLESHEETS-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body ng-controller="AppCtrl as ctrl">
+
+        <nav class="nav navbar navbar-inverse navbar-fixed-top"><h1 class="white text-center">Student's Grades</h1></nav>
+
+        <div class="error" ng-if="ctrl.error">
+            <div uib-alert class="alert alert-warning" close="closeAlert=1" ng-hide="closeAlert">{{ctrl.msg}}</div>
+        </div>
+
+        <div class="container" ng-if="!ctrl.error">
+            <div class="row">
+               <div class="col-sm-9 col-xs-8">
+                   <div ng-repeat="item in ctrl.students"class="col-sm-6 text-center {{item.color}}" ng-if="item.active == true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               <h3 class="bolder panel-title {{item.color}}">{{item.name}}</h3>
+                            </div>
+                            <div class="panel-body">
+                               <p><span class="bold">Student Id:</span> {{item.id}}</p>
+                               <p><soan class="bold">Age:</soan> {{item.yearsOld}} years old</p>
+                                <button class="btn bolder {{item.color}}Bg" ng-click="isCollapsed = !isCollapsed; ctrl.show = !ctrl.show; ctrl.calculate(item, isCollapsed)"><span ng-if="isCollapsed">Show</span> <span ng-if="!isCollapsed">Hide</span> Grades</button>
+                            </div>
+                            <div class="panel-footer bolder">
+                                <div ng-if="!isCollapsed">
+                                   Grades:
+                                   <span ng-repeat="g in item.grades track by $index" ng-class="{failed : g < 3, passed : g >= 3 && g < 4, excellent : g >= 4}" class="bold">{{g}}<span ng-if="!$last" class="{{item.color}}">, </span></span>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+                <div class="col-sm-3 col-xs-4 gradesAverage">
+                    <p class="bolder">Grades Average:</p>
+                    <p class="bold {{ctrl.class}}">{{ctrl.name}}</p>
+                    <p ng-if="(ctrl.show || ctrl.differentName)" ng-class="{failed : ctrl.average < 3, passed : ctrl.average >= 3 && ctrl.average < 4, excellent : ctrl.average >= 4}" class="average">{{ctrl.average}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!--SCRIPTS-->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="js/app.module.js"></script>
+        <script src="js/app.config.js"></script>
+        <script src="js/app.controller.js"></script>
+    </body>
+</html>
